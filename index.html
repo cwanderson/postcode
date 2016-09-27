@@ -35,12 +35,15 @@
 	</head>
 	<body>
 	  <div class="container">
+            <div class="panel-heading">
+	      <h2 class="panel-title">Address Finder</h2>
+	    </div>
             <div id="postcodeForm" class="panel panel-default">	
-	      <form id="form" name="form">
-                <h3>Enter the postcode then click Find.</h3>
-                  <label>Postcode :</label>
-                  <input id="postcode" type="text">
-                  <input id="submit" onclick="findPostcode()" type="button" value="Find">
+	      <form id="form" name="form" class="form-inline">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="postcodeInput" placeHolder="Enter postcode">
+                  <button id="submit" onclick="findPostcode()" type="submit" value="Find" class="btn btn-primary">Find Address</button>
+                </div>
               </form>
 	    </div>
 	  </div>
