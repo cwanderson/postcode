@@ -10,8 +10,9 @@
 		<script src="https://rawgit.com/jonnyreeves/jquery-Mustache/master/jquery.mustache.js"></script>
 		<script type="text/javascript">
 			function findPostcode() {
-				$.ajax({ 
-					url: "https://hermes-test.apigee.net/v1/address/WF26SU?apikey=SUzeWOQSyvYmHtNpE60uryI4NDGNHSBk", 
+				var postcode = $('#postcode').val();
+                                $.ajax({ 
+					url: "https://hermes-test.apigee.net/v1/address/" + postcode + "?apikey=SUzeWOQSyvYmHtNpE60uryI4NDGNHSBk", 
 				    type: 'GET', 
 				    dataType: 'json',
 				    success: function(viewData) { 
