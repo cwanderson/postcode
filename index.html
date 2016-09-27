@@ -34,12 +34,15 @@
 		</style>
 	</head>
 	<body>
-	<form id="form" name="form">
-          <h3>Enter the postcode then click Find.</h3>
-          <div>
-          <label>Postcode :</label>
-          <input id="postcode" type="text">
-          <input id="submit" onclick="findPostcode()" type="button" value="Find">
-        </form>
+	  <div class="container">
+            <div id="postcodeForm" class="panel panel-default">	
+	      <form id="form" name="form">
+                <h3>Enter the postcode then click Find.</h3>
+                  <label>Postcode :</label>
+                  <input id="postcode" type="text">
+                  <input id="submit" onclick="findPostcode()" type="button" value="Find">
+              </form>
+	    </div>
+	  </div>
 	</body>
 </html>
