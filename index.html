@@ -1,51 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-	    <meta charset="utf-8">
-	    <meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-		<script src="https://rawgit.com/janl/mustache.js/master/mustache.js"></script>
-		<script src="https://rawgit.com/jonnyreeves/jquery-Mustache/master/jquery.mustache.js"></script>
-		<script type="text/javascript">
-			function findPostcode() {
-				var postcode = $('#postcodeInput').val();
-                                $.ajax({ 
-					url: "https://hermes-test.apigee.net/v1/address/" + postcode + "?apikey=SUzeWOQSyvYmHtNpE60uryI4NDGNHSBk", 
-				    type: 'GET', 
-				    dataType: 'json',
-				    success: function(viewData) { 
-				    	$.Mustache.load('postcode.mustache')
-				    		.done(function () {
-				        		$('body').mustache('address-list', viewData);
-				    		});
-				    },
-				    error:function(data,status,er) { 
-				        alert("error: [" + data + "] status: [" + status + "] er: [" + er + "].");
-				    }
-				});
-			}
-		</script>
-		<style>
-			body {
-				position: relative;
-			}
-		</style>
-	</head>
-	<body>
-	  <div class="container">
-            <div class="panel-heading">
-	      <h2 class="panel-title">Address Finder</h2>
-	    </div>
-            <div id="postcodeForm" class="panel panel-default">	
-	      <form id="form" name="form" class="form-inline">
-                <div class="form-group">
-                  <input type="text" class="form-control" id="postcodeInput" placeHolder="Enter postcode">
-                  <button id="submit" onclick="findPostcode()" type="submit" value="Find" class="btn btn-primary">Find Address</button>
-                </div>
-              </form>
-	    </div>
-	  </div>
-	</body>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://rawgit.com/janl/mustache.js/master/mustache.js"></script>
+    <script src="https://rawgit.com/jonnyreeves/jquery-Mustache/master/jquery.mustache.js"></script>
+    <script type="text/javascript">
+      function findPostcode() {
+        var postcode = $('#postcodeInput').val();
+        $.ajax({ 
+          url: "https://hermes-test.apigee.net/v1/address/" + postcode + "?apikey=SUzeWOQSyvYmHtNpE60uryI4NDGNHSBk", 
+          type: 'GET', 
+          dataType: 'json',
+          success: function(viewData) {
+            $.Mustache.load('postcode.mustache')
+              .done(
+                function () {
+                  $('body').mustache('address-list', viewData);
+                }
+              );
+          },
+          error:function(data,status,er) { 
+            alert("error: [" + data + "] status: [" + status + "] er: [" + er + "].");
+$.Mustache.load('postcode.mustache')
+              .done(
+                function () {
+                  $('body').mustache('address-list', data);
+                }
+              );
+          }
+        });
+      }
+    </script>
+    <style>
+      body {
+        position: relative;
+      }
+    </style>
+  </head>
+  <!--body>
+    <div class="container">
+      <div>
+        <h2>Address Finder</h2>
+      </div>
+      <div id="postcodeForm">	
+        <form class="form-inline">
+          <div class="form-group">
+            <input type="text" class="form-control" id="postcodeInput" name="postcodeInput" placeHolder="Enter postcode">
+            <button id="submitPostcode" onclick="findPostcode()" type="submit" class="btn btn-primary">Find Address</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body-->
+<body>
+  <div class="container">
+    <div>
+      <h2>Address Finder</h2>
+    </div>
+    <div id="postcodeForm" class="panel panel-default">	
+      <form class="form-inline" id="form" name="form">
+        <div class="form-group">
+          <input type="text" class="form-control" id="postcodeInput" name="postcodeInput" placeHolder="Enter postcode">
+          <button id="submit" onclick="findPostcode()" type="button" class="btn btn-primary">Find Address</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
 </html>
