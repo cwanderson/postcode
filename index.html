@@ -22,10 +22,7 @@
 				    		});
 				    },
 				    error:function(data,status,er) { 
-				        $.Mustache.load('postcode.mustache')
-				    		.done(function () {
-				        		$('body').mustache('address-list', viewData);
-				    		});
+				        alert("error: [" + data + "] status: [" + status + "] er: [" + er + "].");
 				    }
 				});
 			}
