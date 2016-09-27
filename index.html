@@ -24,8 +24,7 @@
               );
           },
           error:function(data,status,er) { 
-            alert("error: [" + data + "] status: [" + status + "] er: [" + er + "].");
-$.Mustache.load('postcode.mustache')
+            $.Mustache.load('postcode.mustache')
               .done(
                 function () {
                   $('body').mustache('address-list', data);
@@ -41,34 +40,19 @@ $.Mustache.load('postcode.mustache')
       }
     </style>
   </head>
-  <!--body>
+  <body>
     <div class="container">
       <div>
         <h2>Address Finder</h2>
       </div>
       <div id="postcodeForm">	
-        <form class="form-inline">
+        <form class="form-inline" id="form" name="form">
           <div class="form-group">
             <input type="text" class="form-control" id="postcodeInput" name="postcodeInput" placeHolder="Enter postcode">
-            <button id="submitPostcode" onclick="findPostcode()" type="submit" class="btn btn-primary">Find Address</button>
+            <button id="submit" onclick="findPostcode()" type="button" class="btn btn-primary">Find Address</button>
           </div>
         </form>
       </div>
     </div>
-  </body-->
-<body>
-  <div class="container">
-    <div>
-      <h2>Address Finder</h2>
-    </div>
-    <div id="postcodeForm" class="panel panel-default">	
-      <form class="form-inline" id="form" name="form">
-        <div class="form-group">
-          <input type="text" class="form-control" id="postcodeInput" name="postcodeInput" placeHolder="Enter postcode">
-          <button id="submit" onclick="findPostcode()" type="button" class="btn btn-primary">Find Address</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</body>
+  </body>
 </html>
