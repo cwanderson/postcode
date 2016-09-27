@@ -1,213 +1,28 @@
 <script type="text/html" id="address-list">
 	<div class="container">
-		<nav class="navbar navbar-inverse navbar-fixed-top">
-		  <div class="container">
-		    <div class="navbar-header">
-		      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-		        <span class="icon-bar"></span>
-		        <span class="icon-bar"></span>
-		        <span class="icon-bar"></span>                        
-		      </button>
-		      <a class="navbar-brand" href="#yourbill">Your Bill</a>
-		    </div>
-		    <div class="collapse navbar-collapse" id="myNavbar">
-		      <ul class="nav navbar-nav">
-		        <li class="active"><a href="#package"><span class="glyphicon glyphicon-gift"></span> Package</a></li>
-		        <li><a href="#calls"><span class="glyphicon glyphicon-earphone"></span> Calls</a></li>
-		        <li><a href="#skyStore"><span class="glyphicon glyphicon-film"></span> Sky Store</a></li>
-		      </ul>
-		    </div>
-		  </div>
-		</nav>
-		
-		<div id="yourbill" class="panel panel-default">
-			<div class="jumbotron" >
-				<h1 class="text-center">Your Sky Bill</h1>
-			</div>
-			<div class="row" >
-				<div class="col-sm-12 text-left" >
-					<h1>Summary</h1>
-				</div>
-			</div>
-			<div class="row" >
-				<div class="col-sm-3">
-					Statement Date:
-				</div>
-				<div class="col-sm-3">
-					{{statement.generated}}
-				</div>
-				<div class="col-sm-3">
-				</div>
-				<div class="col-sm-3">
-				</div>
-			</div>
-			<div class="row" >
-				<div class="col-sm-3">
-					Statement Period From:
-				</div>
-				<div class="col-sm-3">
-					{{statement.period.from}}
-				</div>
-				<div class="col-sm-3">
-				</div>
-				<div class="col-sm-3">
-				</div>
-			</div>
-			<div class="row" >
-				<div class="col-sm-3">
-					Statement Period To:
-				</div>
-				<div class="col-sm-3">
-					{{statement.period.to}}
-				</div>
-				<div class="col-sm-3">
-				</div>
-				<div class="col-sm-3">
-				</div>
-			</div>
-			<div class="row" >
-				<div class="col-sm-3">
-					<h2>Bill Total:</h2>
-				</div>
-				<div class="col-sm-3">
-					<h2>{{total}}</h2>
-				</div>
-				<div class="col-sm-3">
-					<h2>Payment Due By :</h2>
-				</div>
-				<div class="col-sm-3">
-					<h2>{{statement.due}}</h2>
-				</div>
-			</div>
-		</div>
-		
-		<div id="package" class="panel panel-default">
+		<div id="addresses" class="panel panel-default">
 			<div class="panel-heading">
-				<h2 class="panel-title">Sky Packages</h2>
+				<h2 class="panel-title">Addresses</h2>
 			</div>
 			<div class="panel-body">
-				{{#customerPackage.subscriptions.length}}
+				{{#Addresses.length}}
 					<table class="table table-striped table-condensed">
 						<thead>
 							<tr>
-								<th>Package Type</th>
-								<th>Package Name</th>
-								<th>Package Cost</th>
+								<th>Address</th>
 							</tr>
 						</thead>
 						<tbody>
-							{{#customerPackage.subscriptions}}
+							{{#addreses}}
 								<tr>
-									<td>{{type}}</td>
-									<td>{{name}}<td>
-									<td>{{cost}}</td>
+									<td>{{.}}</td>
 								</tr>
-							{{/customerPackage.subscriptions}}
+							{{/addresses}}
 						</tbody>
 					</table>
-				{{/customerPackage.subscriptions.length}}
-				<div class="row">
-					<div class="col-sm-12 text-right">
-						<h2>Package Total: {{customerPackage.total}}</h2>
-					</div>
-				</div>
+				{{/addresses.length}}
 			</div>
 		</div>
 			
-		<div id="calls" class="panel panel-default">
-			<div class="panel-heading">
-				<h2 class="panel-title">Calls</h2>
-			</div>
-			<div class="panel-body">
-				{{#callCharges.calls.length}}
-					<table class="table table-striped table-condensed">
-						<thead>
-							<tr>
-								<th>Number Called</th>
-								<th>Call Duration (hh:mm:ss)</th>
-								<th>Call Cost</th>
-							</tr>
-						</thead>
-						<tbody>
-							{{#callCharges.calls}}
-								<tr>
-									<td>{{called}}</td>
-									<td>{{duration}}<td>
-									<td>{{cost}}</td>
-								</tr>
-							{{/callCharges.calls}}
-						</tbody>
-					</table>
-				{{/callCharges.calls.length}}
-				<div class="row">
-					<div class="col-sm-12 text-right">
-						<h2>Calls Total: {{callCharges.total}}</h2>
-					</div>
-				</div>
-			</div>
-		</div>
-			
-		<div id="skyStore" class="panel panel-default">
-			<div class="panel-heading">
-				<h2 class="panel-title">Sky Store Purchases</h2>
-			</div>
-			<div class="panel-body">
-				{{#skyStore.rentals.length}}
-					<table class="table table-striped table-condensed">
-						<thead>
-							<tr>
-								<th>Title</th>
-								<th>Cost</th>
-							</tr>
-						</thead>
-						<tbody>
-							{{#skyStore.rentals}}
-								<tr>
-									<td>{{title}}</td>
-									<td>{{cost}}</td>
-								</tr>
-							{{/skyStore.rentals}}
-							{{#skyStore.buyAndKeep}}
-								<tr>
-									<td>{{title}}</td>
-									<td>{{cost}}</td>
-								</tr>
-							{{/skyStore.buyAndKeep}}
-						</tbody>
-					</table>
-				{{/skyStore.rentals.length}}
-				{{^skyStore.rentals.length}}
-					{{#skyStore.buyAndKeep.length}}
-						<table class="table table-striped table-condensed">
-							<thead>
-								<tr>
-									<th>Title</th>
-									<th>Cost</th>
-								</tr>
-							</thead>
-							<tbody>
-								{{#skyStore.rentals}}
-									<tr>
-										<td>{{title}}</td>
-										<td>{{cost}}</td>
-									</tr>
-								{{/skyStore.rentals}}
-								{{#skyStore.buyAndKeep}}
-									<tr>
-										<td>{{title}}</td>
-										<td>{{cost}}</td>
-									</tr>
-								{{/skyStore.buyAndKeep}}
-							</tbody>
-						</table>
-					{{/skyStore.buyAndKeep.length}}
-				{{/skyStore.rentals.length}}
-				<div class="row">
-					<div class="col-sm-12 text-right">
-						<h2>Sky Store Total: {{skyStore.total}}</h2>
-					</div>
-				</div>
-			</div>
-		</div>
 	</div>
 </script>
