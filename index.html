@@ -9,6 +9,13 @@
     <script src="https://rawgit.com/janl/mustache.js/master/mustache.js"></script>
     <script src="https://rawgit.com/jonnyreeves/jquery-Mustache/master/jquery.mustache.js"></script>
     <script type="text/javascript">
+      $(document).ready(function() {
+        $('#submit').button().click(function() {
+           $('#addressesPanel').remove();
+          findPostcode();
+        });
+      });
+
       function findPostcode() {
         var postcode = $('#postcodeInput').val();
         $.ajax({ 
@@ -49,7 +56,7 @@
         <form class="form-inline" id="form" name="form">
           <div class="form-group">
             <input type="text" class="form-control" id="postcodeInput" name="postcodeInput" placeHolder="Enter postcode">
-            <button id="submit" onclick="findPostcode()" type="button" class="btn btn-primary">Find Address</button>
+            <button id="submit" type="button" class="btn btn-primary">Find Address</button>
           </div>
         </form>
       </div>
